@@ -4,11 +4,11 @@
 
 This repository provides the Verilog source code and simulation files for the signed approximate multipliers proposed in the paper **"FPGA-Based Low-Power Signed Approximate Multiplier for Diverse Error-Resilient Applications"**.
 It includes:
-- **16×16** and **32×32 approximate multipliers**
-- Proposed Partial Product Generators (PPGs) and Partial Product Accumulators (PPAs) for constructing approximate multipliers of various sizes.
+- **16×16** and **32×32** approximate multipliers
+- Proposed Partial Product Generators (PPGs) and Partial Product Accumulators (PPAs) for constructing approximate multipliers of other sizes.
 - Testbenches with pre-generated 16-bit/32-bit signed random test vectors
 
-Designed for FPGA platforms, the modules enable trade-offs between precision and power consumption while supporting flexible configurations.
+Designed for FPGA platforms, the approximate multipliers enable trade-offs between precision and power consumption while supporting flexible configurations.
 
 ---
 
@@ -23,7 +23,7 @@ Designed for FPGA platforms, the modules enable trade-offs between precision and
 │       ├── Triple_A_Generation.v                       # Generates ±3A partial products
 │       ├── Acc_Radix8.v                                # Optimized accurate radix-8 PPG
 │       ├── Carry_Chains_X.v                            # Carry chains used in accumulation
-│       ├── Approxi_Mult.v                              # 16-bit approximate multiplier
+│       ├── Approxi_Mult.v                              # Approximate multiplier constructed by proposed PPGs and PPAs
 │       └── top.v                                       # Top-level wrapper (configurable)
 
   
@@ -35,7 +35,7 @@ Designed for FPGA platforms, the modules enable trade-offs between precision and
 │       ├── Triple_A_Generation.v                       # Generates ±3A partial products
 │       ├── Acc_Radix8.v                                # Optimized accurate radix-8 PPG
 │       ├── Carry_Chains_X.v                            # Carry chains used in accumulation
-│       ├── Approxi_Mult.v                              # 32-bit approximate multiplier
+│       ├── Approxi_Mult.v                              # Approximate multiplier constructed by proposed PPGs and PPAs
 │       └── top.v                                       # Top-level wrapper (configurable)
 
   
@@ -73,6 +73,6 @@ Each `sim/` directory includes a testbench (`tb_top.v`) and a set of random sign
 3. Set `top.v` as the top module.
 4. Modify parameters in `top.v` to explore different configurations.
 5. **Synthesize the design**, then run simulation using `tb_top.v`.
-    📌 **Note:** Make sure to modify the file path inside `tb_top.v` to correctly locate the input random number file (`random_signed_16bit_numbers.txt` or `random_signed_32bit_numbers.txt`), depending on its location in your environment.
+   📌 Make sure to modify the file path inside `tb_top.v` to correctly locate the input random number file.
 ---
 
