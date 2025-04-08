@@ -4,44 +4,76 @@ This repository provides the Verilog source code and simulation files for the ap
 
 ---
 
-## 📁 Folder Structure
-├── 16x16/ │ ├── sim/ # Testbench and 16-bit random input data │ │ ├── tb_top.v │ │ └── random_signed_16bit_numbers.txt │ └── sources/ # Source files for 16-bit multiplier │ ├── Triple_A_Generation.v # Generates partial product ±3A │ ├── Acc_Radix8.v # Accurate radix-8 PPG │ ├── Carry_Chains_X.v # Long carry chain adder │ ├── Approxi_Mult.v # Proposed 16-bit approximate multiplier │ └── top.v # Top-level configurable wrapper │ ├── 32x32/ │ ├── sim/ # Testbench and 32-bit random input data │ │ ├── tb_top.v │ │ └── random_signed_32bit_numbers.txt │ └── sources/ # Source files for 32-bit multiplier │ ├── Triple_A_Generation.v │ ├── Acc_Radix8.v │ ├── Carry_Chains_X.v │ ├── Approxi_Mult.v │ └── top.v │ ├── PPGs/ # Partial Product Generators │ ├── Acc_Radix-8_PPG.v # Accurate radix-8 PPG │ ├── App_Radix-8_PPG.v # Approximate radix-8 PPG │ └── App_Radix-16_PPG.v # Approximate radix-16 PPG │ └── PPAs/ # Partial Product Accumulators ├── Type_A.v # Accurate PPA - Type A ├── Type_B.v # Accurate PPA - Type B └── Type_A_star.v # Approximate PPA - Type A*
+## Overview
+This repository provides Verilog implementations of signed approximate multipliers for energy-efficient computing in error-resilient applications. It includes:
+- **16×16** and **32×32 approximate multipliers**
+- Proposed **PPGs (Partial Product Generators)** and **PPAs (Partial Product Accumulators)**
+- Testbenches with pre-generated 16-bit/32-bit signed random test vectors
+
+Designed for FPGA platforms, the modules enable trade-offs between precision and power consumption while supporting flexible configurations.
+
+---
+
+## Repository Structure
+
+├── 16x16/
+│ ├── sources/
+│ │ ├── Triple_A_Generation.v // Generates ±3A partial products
+│ │ ├── Acc_Radix8.v // Optimized exact Radix-8 PPG
+│ │ ├── Carry_Chains_X.v // Long carry chains for accumulation
+│ │ ├── Approxi_Mult.v // Core 16b approximate multiplier
+│ │ └── top.v // Top-level with configurable parameters
+│ └── sim/
+│ ├── tb_top.v // Testbench for 16b multiplier
+│ └── random_signed_16bit_numbers.v // 16b test vectors
+
+
+├── 32x32/
+│ ├── sources/ // (Same structure as 16x16/sources)
+│ └── sim/ // Contains 32b testbench & vectors
+
+
+├── PPGs/
+│ ├── Acc_Radix-8_PPG.v // Proposed exact Radix-8 PPG
+│ ├── App_Radix-8_PPG.v // Approximate Radix-8 PPG
+│ └── App_Radix-16_PPG.v // Approximate Radix-16 PPG
+
+└── PPAs/
+├── Type_A.v // Exact PPA (Baseline)
+├── Type_B.v // Enhanced exact PPA
+└── Type_A_star.v // Approximate PPA variant
 
 
 ---
 
-## 🧪 Simulation & Synthesis
+## Key Modules
+### Partial Product Generators (PPGs)
+- **Acc_Radix-8_PPG**: Exact Radix-8 implementation with optimized Booth encoding
+- **App_Radix-8_PPG**: Approximate version with reduced logic complexity
+- **App_Radix-16_PPG**: High-radix approximate generator for larger multipliers
 
-- **Simulation Tool:** Vivado Simulator  
-- **Version:** Vivado 2018.3  
-- **Target FPGA:** Xilinx 7-Series `xc7vx485tffg1157`
+### Partial Product Accumulators (PPAs)
+- **Type_A**: Baseline exact accumulator
+- **Type_B**: Enhanced exact accumulator with carry look-ahead
+- **Type_A_star**: Approximate variant with truncated carry chains
 
-Each `sim/` directory includes a testbench (`tb_top.v`) and a set of random signed input vectors for validating the functionality of the proposed multipliers.
-
----
-
-## 💡 How to Use
-
-1. Open Vivado and create a new project.
-2. Import files from the `sources/` and `sim/` directories of the desired multiplier size.
-3. Set `top.v` as the top module.
-4. Run behavioral simulation using `tb_top.v`.
-5. Modify parameters in `top.v` to explore different configurations.
-
----
-
-## 📎 Notes
-
-- `Triple_A_Generation.v` is responsible for generating special partial products of ±3A.
-- `Carry_Chains_X.v` implements the long carry chains used in accumulation.
-- `PPGs/` and `PPAs/` folders provide modular building blocks for designing custom approximate multipliers.
+### Core Multipliers
+- **16×16/32×32 Approxi_Mult**:  
+  Configurable through `top.v` parameters:
+  - `PPG_TYPE`: Select PPG implementation
+  - `PPA_TYPE`: Choose accumulator type
+  - `APPROX_LEVEL`: Error-energy tradeoff level
 
 ---
 
-## 📬 Contact
+## Simulation Setup
+### Requirements
+- **Tool:** Xilinx Vivado 2018.3
+- **FPGA:** Xilinx 7-Series (xc7vx485tffg1157)
 
-For academic use or further research reference, please cite the corresponding paper.  
-This repository is provided for educational and research purposes.
+### Test Flow
+1. Add source files from `*/sources/` and `PPGs/`, `PPAs/`
+2. Include testbench (`*/*/sim/tb_top.v`) and random vectors
+3. Run behavioral simulation with signed decimal radix
 
 ---
-
