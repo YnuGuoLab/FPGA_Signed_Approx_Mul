@@ -15,40 +15,40 @@ Designed for FPGA platforms, the approximate multipliers enable trade-offs betwe
 ## 📁Repository Structure
 
 <pre>
-├── 16x16/                                              # Contains 16×16-bit approximate multiplier implementation       
-│   ├── sim/                                            # Testbench and input data for simulation
+├── 16x16/                                     # Contains 16×16-bit approximate multiplier implementation       
+│   ├── sim/                                   # Testbench and input data for simulation
 │   │   ├── tb_top.v
 │   │   └── random_signed_16bit_numbers.txt             
 │   └── sources/
-│       ├── Triple_A_Generation.v                       # Generates ±3A partial products
-│       ├── Acc_Radix8.v                                # Optimized accurate radix-8 PPG
-│       ├── Carry_Chains_X.v                            # Carry chains used in accumulation
-│       ├── Approxi_Mult.v                              # Approximate multiplier constructed by proposed PPGs and PPAs
-│       └── top.v                                       # Top-level wrapper (configurable)
+│       ├── Triple_A_Generation.v              # Generates ±3A partial products
+│       ├── Acc_Radix8.v                       # Optimized accurate radix-8 PPG
+│       ├── Carry_Chains_X.v                   # Carry chains used in accumulation
+│       ├── Approxi_Mult.v                     # Approximate multiplier constructed by proposed PPGs and PPAs
+│       └── top.v                              # Top-level wrapper (configurable)
 
   
-├── 32x32/                                              # Contains 32×32-bit approximate multiplier implementation
+├── 32x32/                                     # Contains 32×32-bit approximate multiplier implementation
 │   ├── sim/                                            # Testbench and input data for simulation
 │   │   ├── tb_top.v
 │   │   └── random_signed_32bit_numbers.txt
 │   └── sources/
-│       ├── Triple_A_Generation.v                       # Generates ±3A partial products
-│       ├── Acc_Radix8.v                                # Optimized accurate radix-8 PPG
-│       ├── Carry_Chains_X.v                            # Carry chains used in accumulation
-│       ├── Approxi_Mult.v                              # Approximate multiplier constructed by proposed PPGs and PPAs
-│       └── top.v                                       # Top-level wrapper (configurable)
+│       ├── Triple_A_Generation.v              # Generates ±3A partial products
+│       ├── Acc_Radix8.v                       # Optimized accurate radix-8 PPG
+│       ├── Carry_Chains_X.v                   # Carry chains used in accumulation
+│       ├── Approxi_Mult.v                     # Approximate multiplier constructed by proposed PPGs and PPAs
+│       └── top.v                              # Top-level wrapper (configurable)
 
   
-├── PPGs/                                               # Proposed partial product generators
-│   ├── Acc_Radix-8_PPG.v                               # Accurate radix-8 PPG
-│   ├── App_Radix-8_PPG.v                               # Approximate radix-8 PPG
-│   └── App_Radix-16_PPG.v                              # Approximate radix-16 PPG
+├── PPGs/                                      # Proposed partial product generators
+│   ├── Acc_Radix-8_PPG.v                      # Accurate radix-8 PPG
+│   ├── App_Radix-8_PPG.v                      # Approximate radix-8 PPG
+│   └── App_Radix-16_PPG.v                     # Approximate radix-16 PPG
 
   
-├── PPAs/                                               # Proposed partial product accumulators
-│   ├── Type_A.v                                        # Accurate PPA (Type A)
-│   ├── Type_B.v                                        # Accurate PPA (Type B)
-│   └── Type_A_star.v                                   # Approximate PPA (Type A*)
+├── PPAs/                                      # Proposed partial product accumulators
+│   ├── Type_A.v                               # Accurate PPA (Type A)
+│   ├── Type_B.v                               # Accurate PPA (Type B)
+│   └── Type_A_star.v                          # Approximate PPA (Type A*)
 </pre>
 
 
