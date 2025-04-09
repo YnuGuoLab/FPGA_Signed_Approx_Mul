@@ -28,7 +28,7 @@ Designed for FPGA platforms, the approximate multipliers enable trade-offs betwe
 
   
 ├── 32x32/                                     # Contains 32×32-bit approximate multiplier implementation
-│   ├── sim/                                            # Testbench and input data for simulation
+│   ├── sim/                                   # Testbench and input data for simulation
 │   │   ├── tb_top.v
 │   │   └── random_signed_32bit_numbers.txt
 │   └── sources/
